@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
-import { UpdateScheduleDto } from './dto/update-schedule.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ScheduleService {
-  create(createScheduleDto: CreateScheduleDto) {
-    return 'This action adds a new schedule';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createScheduleDto: CreateScheduleDto) {
+    const schedule = await this.prisma.feedSchedule.create({
+      data: createScheduleDto,
+    });
+    return schedule;
   }
 
   findAll() {
-    return `This action returns all schedule`;
+    return this.prisma.feedSchedule.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} schedule`;
-  }
-
-  update(id: number, updateScheduleDto: UpdateScheduleDto) {
-    return `This action updates a #${id} schedule`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} schedule`;
+  async remove(id: string) {
+    await this.prisma.feedSchedule.delete({
+      where: { id },
+    });
+    return `Deleted schedule with id: ${id}`;
   }
 }
