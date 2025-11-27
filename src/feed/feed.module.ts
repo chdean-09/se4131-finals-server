@@ -9,4 +9,4 @@ import { PrismaModule } from 'src/prisma.module';
   providers: [FeedGateway, FeedService],
   controllers: [FeedController],
 })
-export class EventsModule {}
+export class FeedModule {}

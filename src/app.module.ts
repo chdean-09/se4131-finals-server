@@ -5,12 +5,14 @@ import { ConfigModule } from '@nestjs/config';
 import { FeedGateway } from './feed/feed.gateway';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from './schedule/schedule.module';
+import { FeedModule } from './feed/feed.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     EventEmitterModule.forRoot(),
     ScheduleModule,
+    FeedModule,
   ],
   controllers: [AppController],
   providers: [AppService, FeedGateway],
