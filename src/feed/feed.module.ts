@@ -8,5 +8,6 @@ import { PrismaModule } from 'src/prisma.module';
   imports: [PrismaModule],
   providers: [FeedGateway, FeedService],
   controllers: [FeedController],
+  exports: [FeedService],
 })
 export class FeedModule {}

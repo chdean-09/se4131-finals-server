@@ -1,6 +1,6 @@
 import { IsEnum } from 'class-validator';
 
-enum FeedType {
+export enum FeedType {
   SCHEDULED = 'SCHEDULED',
   MANUAL = 'MANUAL',
 }

@@ -36,6 +36,14 @@ export class ScheduleService {
     return this.prisma.feedSchedule.findMany();
   }
 
+  async findEnabled() {
+    return this.prisma.feedSchedule.findMany({
+      where: {
+        isEnabled: true,
+      },
+    });
+  }
+
   async remove(id: string) {
     await this.prisma.feedSchedule.delete({
       where: { id },

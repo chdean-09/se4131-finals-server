@@ -6,9 +6,11 @@ import { FeedGateway } from './feed/feed.gateway';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from './schedule/schedule.module';
 import { FeedModule } from './feed/feed.module';
+import { ScheduleModule as NestScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    NestScheduleModule.forRoot(),
     ConfigModule.forRoot(),
     EventEmitterModule.forRoot(),
     ScheduleModule,
