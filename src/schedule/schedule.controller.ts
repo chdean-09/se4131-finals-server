@@ -11,6 +11,11 @@ export class ScheduleController {
     return this.scheduleService.create(createScheduleDto);
   }
 
+  @Post(':id/toggle')
+  toggle(@Param('id') id: string) {
+    return this.scheduleService.toggle(id);
+  }
+
   @Get()
   findAll() {
     return this.scheduleService.findAll();

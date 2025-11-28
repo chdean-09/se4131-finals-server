@@ -12,6 +12,26 @@ export class ScheduleService {
     return schedule;
   }
 
+  async toggle(id: string) {
+    const schedule = await this.prisma.feedSchedule.findUnique({
+      where: { id },
+      select: { isEnabled: true },
+    });
+
+    if (!schedule) {
+      throw new Error('Schedule not found');
+    }
+
+    const currentStatus = schedule.isEnabled;
+
+    await this.prisma.feedSchedule.update({
+      where: { id },
+      data: { isEnabled: !currentStatus },
+    });
+
+    return 'Toggled schedule with id: ' + id;
+  }
+
   findAll() {
     return this.prisma.feedSchedule.findMany();
   }
