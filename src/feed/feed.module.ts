@@ -3,9 +3,10 @@ import { FeedGateway } from './feed.gateway';
 import { FeedController } from './feed.controller';
 import { FeedService } from './feed.service';
 import { PrismaModule } from 'src/prisma.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [PrismaModule, HttpModule],
   providers: [FeedGateway, FeedService],
   controllers: [FeedController],
   exports: [FeedService],
